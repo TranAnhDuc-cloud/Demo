@@ -7,6 +7,12 @@
     <title>Login | Đăng Nhập</title>
 </head>
 <body>
-    Đây là trang login
+    Tên Đăng Nhập :
+    {{$usename}} <br>
+    Mật Khẩu :
+    {{$password}}
+    <br>
+    Share Form View :
+    {{$Name}}
 </body>
 </html>

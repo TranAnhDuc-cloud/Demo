@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\MyController;
 use App\User;
+use Facade\FlareClient\Views;
+use Illuminate\Contracts\View\View as ViewView;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,20 +87,47 @@ Route::get('CallController','MyController@Hello');
 // Truyền dữ liệu cho controller
 Route::get('Thamso/{ten}','MyController@ThamSo');
 Route::get('HoTen/{ten}/{namsinh}','MyController@HoTen')->where(['ten'=>'[a-zA-Z]+'])->where(['namsinh'=>'[0-9]+'])->name('HoTen');
-
+Route::get('Xinchao/{name}/{namsinh}','MyController@getXinChao')->name('Xinchao');
+Route::get('Tambiet/{name}/{namsinh}','MyController@getTamBiet')->name('Tambiet');
 //URL
 Route::get('MyRequest','MyController@GetURL');
 
 // Gửi và nhận dữ liệu với request
-Route::get('getForm',function(){
+$getForm = Route::get('getForm',function(){
     return view('postForm');
 });
-
 Route::post('postForm',['as'=>'postForm','uses'=>'MyController@postForm']); 
-Route::get('Xinchao/{name}/{namsinh}','MyController@getXinChao')->name('Xinchao');
-Route::get('Tambiet/{name}/{namsinh}','MyController@getTamBiet')->name('Tambiet');
-Route::get('viewText',function(){
-    return view('viewText');
-});
-Route::get('Login','Mycontroller@Login')->name('Login');
+
+//Call Views bằng controller
+Route::get('Login/{username}/{password}','Mycontroller@Login')->name('Login');
 Route::get('Register','Mycontroller@Register')->name('Register');
+
+//Dùng chung dữ liệu trên Views
+View::share('Name',"Đây là views đã đc share");
+
+//Set Cookie
+Route::get('setCookie','MyController@setCookie')->name('setCookie');
+Route::get('getCookie','Mycontroller@getCookie')->name('getCookie');
+
+//Upload File
+Route::get('getFile',function(){
+    return view('postFile');
+})->name('getFile');
+Route::post('postFile',['as'=>'postFile','uses'=>'Mycontroller@postFile']);
+
+//JSON
+Route::get('getJson','Mycontroller@getJson');
+
+//Admin Blade Template
+Route::get('Admin',function(){
+    return view('admin.layout.master');
+})->name('Master');
+Route::get('Blade/{str}','Mycontroller@Blade');
+Route::get('Loaitin',function (){
+    return view('admin.pages.loaitin');
+});
+Route::get('Theloai',function (){
+    return view('admin.pages.theloai');
+});
+
+
