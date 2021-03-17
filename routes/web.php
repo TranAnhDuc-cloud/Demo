@@ -99,9 +99,10 @@ $getForm = Route::get('getForm',function(){
 Route::post('postForm',['as'=>'postForm','uses'=>'MyController@postForm']); 
 
 //Call Views bằng controller
-Route::get('Login/{username}/{password}','Mycontroller@Login')->name('Login');
+Route::get('Abc/{username}/{password}','Mycontroller@Abc')->name('Abc');
 Route::get('Register','Mycontroller@Register')->name('Register');
-
+Route::get('Login',['as'=>'Login','uses'=>'Mycontroller@Login']);
+Route::post('postLogin',['as'=>'postLogin','uses'=>'Mycontroller@postLogin']);
 //Dùng chung dữ liệu trên Views
 View::share('Name',"Đây là views đã đc share");
 

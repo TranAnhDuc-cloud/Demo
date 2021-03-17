@@ -10,10 +10,12 @@
 
 <body>
     <header>
+    Header
     </header>
     <main>
+    Main
     </main>
-    <footer>
+    <footer> Footer
     </footer>
 </body>
 

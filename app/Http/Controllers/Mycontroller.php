@@ -50,10 +50,28 @@ class MyController extends Controller
         echo "Tuoi Ban La : " .$request->input("Tuoi");
     }
     //Call views bằng controller
-    public function Login($usename,$password){
+    public function Abc($usename,$password){
         //return view('admin.pages.Login',['usename'=>$usename,'password'=>$password]);
 
-        return view('admin.pages.Login',compact('usename','password'));
+        // return view('admin.pages.Abc',compact('usename','password'));
+        return view('admin.pages.Register');
+    }
+    public function Login(){
+        return view('admin.pages.Login');
+    }
+    public function postLogin(Request $request){
+       if($request->input('username') == ''){
+            echo 'Chưa Nhập Tên Đăng Nhập';
+       }else{
+           if($request->input('password')==''){
+                echo 'Chưa Nhập Mật Khẩu';
+           }else{
+               if($request->input('username')=='admin' && $request->input('password')=='admin'){
+                    echo "Đăng Nhập Thành Công";
+                    return view('Home');
+               }
+           }
+       }
     }
     public function Register(){
         return view('admin.pages.Register');

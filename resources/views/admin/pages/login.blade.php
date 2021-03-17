@@ -7,12 +7,17 @@
     <title>Login | Đăng Nhập</title>
 </head>
 <body>
-    Tên Đăng Nhập :
-    {{$usename}} <br>
-    Mật Khẩu :
-    {{$password}}
-    <br>
-    Share Form View :
-    {{$Name}}
+<form action="{{route('postLogin')}}" method="post">
+@csrf
+<label for="">Tên Đăng Nhập</label>
+<input type="text" name="username">
+<br>
+<br>
+<label for="">Mật Khẩu</label>
+<input type="password" name="password">
+<br>
+<br>
+<input type="submit" name="submit">
+</form>
 </body>
 </html>
