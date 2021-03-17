@@ -123,13 +123,38 @@ class MyController extends Controller
         return response()->json($arr);
     }
     public function Blade($str){
+         $tllt = "<b>Theloai - loaitin</b>";
         if($str == "Loaitin"){
-            return view('admin.pages.loaitin');
+            // return view('admin.pages.loaitin');
+            return view('admin.pages.loaitin',['tllt'=>$tllt]);
         }elseif($str == "Theloai"){
-            return view('admin.pages.theloai');
+            // return view('admin.pages.theloai');
+            return view('admin.pages.theloai',['tllt'=>$tllt]);
         }else{
-           return redirect()->route('Master');
+           return redirect()->route('Admin');
         }
     }
+
+    // Admin
+    public function indexAdmin(){
+        return view('admin.pages.home');
+    }
+    public function TheLoai(){
+        $tllt = "<b>Theloai - loaitin</b>";
+        return view('admin.pages.loaitin',['tllt'=>$tllt]);
+    }
+    public function LoaiTin(){
+        $tllt = "<b>Theloai - loaitin</b>";
+        return view('admin.pages.theloai',['tllt'=>$tllt]);
+    }
+
+    // User
+    public function indexUser(){
+        return view('user.pages.home');
+    }
+    public function LienHe(){
+        return view('user.pages.lienhe');    
+    }
+    
     
 }

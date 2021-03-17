@@ -93,7 +93,7 @@ Route::get('Tambiet/{name}/{namsinh}','MyController@getTamBiet')->name('Tambiet'
 Route::get('MyRequest','MyController@GetURL');
 
 // Gửi và nhận dữ liệu với request
-$getForm = Route::get('getForm',function(){
+Route::get('getForm',function(){
     return view('postForm');
 });
 Route::post('postForm',['as'=>'postForm','uses'=>'MyController@postForm']); 
@@ -101,8 +101,10 @@ Route::post('postForm',['as'=>'postForm','uses'=>'MyController@postForm']);
 //Call Views bằng controller
 Route::get('Abc/{username}/{password}','Mycontroller@Abc')->name('Abc');
 Route::get('Register','Mycontroller@Register')->name('Register');
+
 Route::get('Login',['as'=>'Login','uses'=>'Mycontroller@Login']);
 Route::post('postLogin',['as'=>'postLogin','uses'=>'Mycontroller@postLogin']);
+
 //Dùng chung dữ liệu trên Views
 View::share('Name',"Đây là views đã đc share");
 
@@ -120,15 +122,13 @@ Route::post('postFile',['as'=>'postFile','uses'=>'Mycontroller@postFile']);
 Route::get('getJson','Mycontroller@getJson');
 
 //Admin Blade Template
-Route::get('Admin',function(){
-    return view('admin.layout.master');
-})->name('Master');
 Route::get('Blade/{str}','Mycontroller@Blade');
-Route::get('Loaitin',function (){
-    return view('admin.pages.loaitin');
-});
-Route::get('Theloai',function (){
-    return view('admin.pages.theloai');
-});
+Route::get('Loaitin','Mycontroller@LoaiTin')->name('LoaiTin');
+Route::get('Theloai','Mycontroller@TheLoai')->name('TheLoai');
+Route::get('Admin','Mycontroller@indexAdmin')->name('Admin');
+
+// User Blade Template
+Route::get('Lienhe','Mycontroller@LienHe')->name('Lienhe');
+Route::get('User','Mycontroller@indexUser')->name('User');
 
 

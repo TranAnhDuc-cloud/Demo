@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('User.layout.master')
+@section('title','Home')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Trang Chủ</title>
-</head>
-
-<body>
-    <header>
-    Header
-    </header>
-    <main>
-    Main
-    </main>
-    <footer> Footer
-    </footer>
-</body>
-
-</html>
+@section('content')
+    <h1>Đây là Home</h1>
+@endsection
