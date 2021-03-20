@@ -6,6 +6,7 @@ use Facade\FlareClient\Views;
 use Illuminate\Contracts\View\View as ViewView;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 
 /*
@@ -152,6 +153,11 @@ Route::get('DoiTen','Mycontroller@DoiTen')->name('DoiTen');
 // Xóa table
 Route::get('XoaTable','Mycontroller@XoaTable')->name('XoaTable');
 
+
+// QueryBuild
+Route::get('Query/get','Mycontroller@Query');
+
+Route::get('Schema/create-table','Mycontroller@create_table');
 
 
 

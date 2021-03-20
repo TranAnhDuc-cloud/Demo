@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
-use App\Http\Requests;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 /*  @ Lấy dữ liệu từ route về controller bằng request
     @ Xuất dữ liệu từ controller ra view bằng response
@@ -183,7 +182,10 @@ class MyController extends Controller
             $table->float('gia');
             $table->integer('soluong');
             $table->integer('id_loaisanpham')->unsigned();
-            $table->foreign('id_loaisanpham')->references('id')->on('loaisanpham');
+            // đặt unsigned cho integer(so duong nguyen k dấu)
+            $table->foreign('id_loaisanpham')->references('id')->on('loaisanpham')->onDelete('cascade');
+            // onDelete('cascade') là xóa bảng bên khóa phụ trước mới xóa được bảng khóa chính
+            $table->timestamps();
         });
         echo "Đã tạo bảng sản phẩm có liên kết khóa phụ";
     }
@@ -225,6 +227,30 @@ class MyController extends Controller
         echo "Đã tạo bang hoa don thanh cong";
     }
 
-    
+    public function Query(){
+        // Lấy toàn bộ giá trị trong table
+        // select * from users
+        $data = DB::table('users')->get();
+        // var_dump($data);
+        foreach($data as $row){
+            foreach($row as $key=>$value){
+                echo $key.' : '.$value;
+                echo "</br>";
+            }
+            echo "<hr>";
+        }
+
+        // lấy hàng giá trị đầu tiên trong table
+        $data = DB::table('users')->first();
+        var_dump($data);
+        
+    }
+    public function create_table(){
+        Schema::create('loaitin',function($table){
+            $table->increments('id');
+            $table->string('tenloaitin');
+        });
+        echo "Đã tạo thành công table loaitin";
+    }
     
 }
