@@ -132,3 +132,26 @@ Route::get('Lienhe','Mycontroller@LienHe')->name('Lienhe');
 Route::get('User','Mycontroller@indexUser')->name('User');
 
 
+//Làm Việc Với Database
+// Tạo Table
+Route::get('Database','Mycontroller@TaoDB')->name('Database');
+Route::get('HoaDon','Mycontroller@TaoTable')->name('HoaDon');
+
+// Tạo Table có khóa phụ
+Route::get('SanPham','Mycontroller@SanPham')->name('SanPham');
+
+// Xóa 1 cột trong table
+Route::get('XoaCollum','Mycontroller@XoaCollum')->name('XoaCollum');
+
+// Thêm 1 cột trong table
+Route::get('ThemCollum','Mycontroller@ThemCollum')->name('ThemCollum');
+
+// Đổi tên table
+Route::get('DoiTen','Mycontroller@DoiTen')->name('DoiTen');
+
+// Xóa table
+Route::get('XoaTable','Mycontroller@XoaTable')->name('XoaTable');
+
+
+
+

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Schema;
+
 /*  @ Lấy dữ liệu từ route về controller bằng request
     @ Xuất dữ liệu từ controller ra view bằng response
  */
@@ -155,6 +157,74 @@ class MyController extends Controller
     public function LienHe(){
         return view('user.pages.lienhe');    
     }
+
+    // Database
+    // Tao Table
+    public function TaoDB(){
+        Schema::create('loaisanpham',function($table){
+            $table->increments('id');
+            $table->string('ten',200);
+        });
+
+        Schema::create('theloai',function($table){
+            $table->increments('id');
+            $table->string('tentheloai',200)->nullable();//nullable là cho phép giá trị null
+            $table->string('tacgia',200)->default("Nha Sn Xuat");//defalt là mặc định giá trị
+
+        });
+        echo "Đã thực hiện tạo bảng thành công";
+    }
+
+    // Tạo Table có khóa phụ
+    public function SanPham(){
+        Schema::create('sanpham',function($table){
+            $table->increments('id');
+            $table->string('ten');
+            $table->float('gia');
+            $table->integer('soluong');
+            $table->integer('id_loaisanpham')->unsigned();
+            $table->foreign('id_loaisanpham')->references('id')->on('loaisanpham');
+        });
+        echo "Đã tạo bảng sản phẩm có liên kết khóa phụ";
+    }
+
+    // Sua Table
+    public function XoaCollum(){
+        // Xoa 1 Cot Trong Table
+        Schema::table('theloai',function($table){
+            $table->dropColumn('tacgia');
+        });
+        echo "Đã xóa cột tacgia trong table the loai thanh cong";
+    }
+    public function ThemCollum(){
+        // Thêm 1 cột trong table
+        Schema::table('theloai',function($table){
+            $table->string('email');
+        });
+        echo "Đã thêm cột Email vào table the loai";
+    }
+    
+    public function DoiTen(){
+        // Đổi tên tabble
+        Schema::rename('theloai','hoadon');
+        echo "Đã đôi tên table thể loại thành hóa đơn thành công";
+    }
+
+    public function XoaTable(){
+        // Xóa table có kiểm tra table tồn tại thì mới xóa
+        Schema::dropIfExists('hoadon');
+        echo "Đã xóa table hoa don thành công";
+    }
+    public function TaoTable(){
+        Schema::create('hoadon',function($table){
+            $table->increments('id');
+            $table->float('gia');
+            $table->integer('soluong');
+            $table->float('thanhtien');
+        });
+        echo "Đã tạo bang hoa don thanh cong";
+    }
+
     
     
 }
