@@ -8,6 +8,12 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
+     * php artisan make:migration Mygration
+     * php artisan migrate:refesh
+     * php artisan migrate:reset
+     * php artisan migrate
+     * php artisan  --force (không muốn thông báo)
+     * php artisan migrate:rollback
      *
      * @return void
      */

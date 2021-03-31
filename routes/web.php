@@ -153,11 +153,30 @@ Route::get('DoiTen','Mycontroller@DoiTen')->name('DoiTen');
 // Xóa table
 Route::get('XoaTable','Mycontroller@XoaTable')->name('XoaTable');
 
-
-// QueryBuild
-Route::get('Query/get','Mycontroller@Query');
-
 Route::get('Schema/create-table','Mycontroller@create_table');
 
+// QueryBuild
+Route::group(['prefix'=>'Query'],function(){
+    //Domain/MyGroup/Get
+    Route::get('Get','Mycontroller@Query');
 
+    Route::get('Where','Mycontroller@Query1');
 
+    Route::get('Select','Mycontroller@Query2');
+    
+    Route::get('Raw','Mycontroller@Query3');
+
+    Route::get('Orderby','Mycontroller@Query4');
+
+    Route::get('Skip','Mycontroller@Query5');
+
+    Route::get('Count','Mycontroller@Query6');
+    
+    Route::get('Update','Mycontroller@Query7');
+
+    Route::get('Delete','Mycontroller@Query8');
+
+    Route::get('Insert','Mycontroller@Query9');
+
+    Route::get('Truncate','Mycontroller@Query10');
+});

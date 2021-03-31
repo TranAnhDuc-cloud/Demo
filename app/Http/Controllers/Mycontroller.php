@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 /*  @ Lấy dữ liệu từ route về controller bằng request
     @ Xuất dữ liệu từ controller ra view bằng response
@@ -203,7 +205,8 @@ class MyController extends Controller
         Schema::table('theloai',function($table){
             $table->string('email');
         });
-        echo "Đã thêm cột Email vào table the loai";
+        echo "Đã thêm cột
+         Email vào table the loai";
     }
     
     public function DoiTen(){
@@ -227,6 +230,15 @@ class MyController extends Controller
         echo "Đã tạo bang hoa don thanh cong";
     }
 
+    
+    public function create_table(){
+        Schema::create('loaitin',function($table){
+            $table->increments('id');
+            $table->string('tenloaitin');
+        });
+        echo "Đã tạo thành công table loaitin";
+    }
+
     public function Query(){
         // Lấy toàn bộ giá trị trong table
         // select * from users
@@ -245,12 +257,121 @@ class MyController extends Controller
         var_dump($data);
         
     }
-    public function create_table(){
-        Schema::create('loaitin',function($table){
-            $table->increments('id');
-            $table->string('tenloaitin');
-        });
-        echo "Đã tạo thành công table loaitin";
+
+    public function Query1(){
+        // Lấy dữ liệu bảng user có cột id = 2
+        $data = DB::table('users')->where('id','=',2)->get();
+        foreach($data as $row){
+            foreach($row as $key=>$value){
+                echo $key.' : '.$value;
+                echo "</br>";
+            }
+            echo "<hr>";
+        }
+
     }
-    
+
+    public function Query2(){
+        // Lấy các trường id name email của table users với điều kiện id = 2
+        $data = DB::table('users')
+                    ->select(['id','name','email'])
+                    ->where('id',2)
+                    ->get();
+        foreach($data as $row){
+            foreach($row as $key=>$value){
+                echo $key.' : '.$value;
+                echo "</br>";
+            }
+            echo "<hr>";
+        }
+
+    }
+    public function Query3(){
+        // Lấy các trường id name email va doi ten name thanh usernam khi in ra bảng user có cột id = 2
+        $data = DB::table('users')->select([DB::raw('id,name as username,email')])->where('id',2)->get();
+        foreach($data as $row){
+            foreach($row as $key=>$value){
+                echo $key.' : '.$value;
+                echo "</br>";
+            }
+            echo "<hr>";
+        }
+    }
+    public function Query4(){
+        // Lấy dữ liệu bảng user có cột id = 2
+        $data = DB::table('users')->select([DB::raw('id,name as username,email')])->where('id','>',1)->orderBy('id','asc')->get();
+        foreach($data as $row){
+            foreach($row as $key=>$value){
+                echo $key.' : '.$value;
+                echo "</br>";
+            }
+            echo "<hr>";
+        }
+    }
+    public function Query5(){
+        // Lấy dữ liệu bảng user có cột id = 2
+        $data = DB::table('users')->select([DB::raw('id,name as username,email')])->where('id','>',1)->orderBy('id','desc')->skip(1)->take(5)->get();
+        // Skip(1) bỏ qua phân tử thứ 1 và take(4) là lấy 4 phần tử tiếp theo
+        foreach($data as $row){
+            foreach($row as $key=>$value){
+                echo $key.' : '.$value;
+                echo "</br>";
+            }
+            echo "<hr>";
+        }
+    }
+    public function Query6(){
+        // Lấy dữ liệu bảng user có cột id = 2
+        $data = DB::table('users')->select([DB::raw('id,name as username,email')])->where('id','>',1)->orderBy('id','desc')->skip(0)->take(5)->get();
+
+        $count = $data->count();
+        echo 'Đếm được có '.$count.' phần tử'.'</br>';
+        // Skip(1) bỏ qua phân tử thứ 1 và take(4) là lấy 4 phần tử tiếp theo
+        foreach($data as $row){
+            foreach($row as $key=>$value){
+                echo $key.' : '.$value;
+                echo "</br>";
+            }
+            echo "<hr>";
+        }
+    }
+    public function Query7(){
+        // update cột có id = 1 trong table user sửa giá trị trong cột name thành anhduc123
+        $data = DB::table('users')->where('id',1)->update(['name'=>'anhduc123']);
+        
+        echo "đã update";
+    }
+    public function Query8(){
+        // xóa hàng có id = 1 trong table users
+        $data = DB::table('users')->where('id',1)->delete();
+        
+        echo "đã xóa";
+    }
+
+    public function Query9(){
+        // insert into (add) thêm các giá trị vào table users
+        $data = DB::table('users')->insert([
+            'name'=>'anhduc',
+            'email'=>'duc.25112121@gmail.com',
+            'password'=>bcrypt('anhduc'),
+        ]);
+        echo "đã thêm users";
+    }
+
+    public function Query10(){
+        // Xóa tất cả giá trị trong table và đặt chỉ số tự tăng về 0
+        $data = DB::table('users')->truncate();
+        echo "đã xóa các giá tri trong users";
+    }
+
+    public function CallModel(){
+        // $user = new App\User();
+        // $user->name = 'trananhduc';
+        // $user->email = 'trananhduc123@gmail.com';
+        // $user->password = '123465';
+
+        // $user->save();
+        echo " đã save dữ liệu";
+
+    }
 }

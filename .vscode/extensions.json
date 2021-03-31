@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "sophisticode.php-formatter",
+        "phpformatter.composer" ,
+        "phpformatter.logging" ,
+        "phpformatter.arguments",
+    ]
+}

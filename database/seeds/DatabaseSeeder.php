@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
 }
 class UserSeeder extends Seeder{
     public function run(){
-        // select * from
+        // select * from    
         DB::table('users')->insert([
             ['name'=>'duc1',
             'email'=>'ductran.25122001@gmail.com',
@@ -40,4 +40,5 @@ class Loaisanpham extends Seeder{
             ['name'=>'duc3','email'=>'dungtran.11110110@gmail.com','password'=>bcrypt('123456')],
         ]);
     }
+    
 }
