@@ -63,19 +63,28 @@ class MyController extends Controller
         return view('admin.pages.Login');
     }
     public function postLogin(Request $request){
+        $thongbao ="";
+        $username = DB::table('users')->select([DB::raw('id,name as username')])->where('username',$request->input('username'))->get();
+        $password = DB::table('users')->select([DB::raw('id,name as username,password')])->where('password',$request->input('password'))->get();
        if($request->input('username') == ''){
-            echo 'Chưa Nhập Tên Đăng Nhập';
+           $thongbao ="Chưa Nhập Username";
+            return view('Home',compact('thongbao',$thongbao));
        }else{
            if($request->input('password')==''){
-                echo 'Chưa Nhập Mật Khẩu';
+            $thongbao ="Chưa Nhập Password";
+            return view('Home',compact('thongbao',$thongbao));
            }else{
-               if($request->input('username')=='admin' && $request->input('password')=='admin'){
+               if($username = true && $password =true){
                     echo "Đăng Nhập Thành Công";
                     return view('Home');
                }
+               
            }
        }
     }
+    // <title>@yield('title')</title>
+    // <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    // <div id="wrapper" class="bg-dark-layout" style="background-image: url('{{asset('img/banner/section-background.png')}}');">
     public function Register(){
         return view('admin.pages.Register');
     }
@@ -153,7 +162,7 @@ class MyController extends Controller
 
     // User
     public function indexUser(){
-        return view('user.pages.home');
+        return view('Home');
     }
     public function LienHe(){
         return view('user.pages.lienhe');    

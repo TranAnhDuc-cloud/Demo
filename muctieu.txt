@@ -1,0 +1,11 @@
+tạo layout 
+header
+footer
+main
+
+tạo csdl
+tạo bảng
+thêm dư leieu
+them sửa xóa db
+
+đổ db ra view

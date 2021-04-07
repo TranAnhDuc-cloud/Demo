@@ -26,8 +26,9 @@ Route::get('/', function () {
     return view('Home');
 });
 
-//Tạo Route Home
-Route::get('Home',function(){
+
+//Tạo Route 
+Route::get('Laravel',function(){
     return "xin chào laravel";
 });
 
@@ -101,9 +102,9 @@ Route::post('postForm',['as'=>'postForm','uses'=>'MyController@postForm']);
 
 //Call Views bằng controller
 Route::get('Abc/{username}/{password}','Mycontroller@Abc')->name('Abc');
-Route::get('Register','Mycontroller@Register')->name('Register');
 
-Route::get('Login',['as'=>'Login','uses'=>'Mycontroller@Login']);
+
+Route::get('Login1',['as'=>'Login','uses'=>'Mycontroller@Login1']);
 Route::post('postLogin',['as'=>'postLogin','uses'=>'Mycontroller@postLogin']);
 
 //Dùng chung dữ liệu trên Views
@@ -179,4 +180,17 @@ Route::group(['prefix'=>'Query'],function(){
     Route::get('Insert','Mycontroller@Query9');
 
     Route::get('Truncate','Mycontroller@Query10');
+
+    Route::get('Model','Mycontroller@CallModel');
 });
+
+
+
+
+Route::get('/','MyController@indexUser')->name('home');
+
+// AUTHEN CONTROLLER
+Route::get('Register','AuthController@Register')->name('Register');
+Route::get('xulyRegister','AuthController@xulyRegister')->name('xulyRegister');
+Route::get('Login','AuthController@Login')->name('Login');
+Route::post('xulyLogin','AuthController@xulyLogin')->name('xulyLogin');
