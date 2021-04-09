@@ -22,10 +22,9 @@ use Illuminate\Support\Facades\View;
 // php artisan serve
 // http://localhost:8000
 
-Route::get('/', function () {
-    return view('Home');
-});
-
+// Route::get('/', function () {
+//     return view('Home');
+// });
 
 //Tạo Route 
 Route::get('Laravel',function(){
@@ -127,7 +126,7 @@ Route::get('getJson','Mycontroller@getJson');
 Route::get('Blade/{str}','Mycontroller@Blade');
 Route::get('Loaitin','Mycontroller@LoaiTin')->name('LoaiTin');
 Route::get('Theloai','Mycontroller@TheLoai')->name('TheLoai');
-Route::get('Admin','Mycontroller@indexAdmin')->name('Admin');
+
 
 // User Blade Template
 Route::get('Lienhe','Mycontroller@LienHe')->name('Lienhe');
@@ -185,12 +184,62 @@ Route::group(['prefix'=>'Query'],function(){
 });
 
 
+// Home
+Route::get('/','MenuController@index')->name('home');
+Route::get('/home','MenuController@index');
+Route::get('/Home','MenuController@index');
+// Admin
+Route::get('Admin','AdminController@index')->name('Admin');
+// EDIT USER
+Route::get('getUser',['as'=>'getUser','uses'=>'EditUserController@getUser']);
+// ADD
+Route::get('addUser',['as'=>'addUser','uses'=>'EditUserController@addUser']);
+Route::post('xulyAddUser',['as'=>'xulyAddUser','uses'=>'EditUserController@xulyAddUser']);
+// EDIT
+Route::get('editUser/{id}',['as'=>'editUser','uses'=>'EditUserController@editUser']);
+Route::post('Update/{id}',['as'=>'xulyeditUser','uses'=>'EditUserController@update']);
+// DELETE
+Route::get('deleteUser/{id}',['as'=>'deleteUser','uses'=>'EditUserController@deleteUser']);
+// Route::post('xulydeleteUser/{id}',['as'=>'xulydeleteUser','uses'=>'EditUserController@xulydeleteUser']);
 
+// Route::group(['prefix'=>'Admin'],function(){
+//     Route::group(['prefix'=>'User'],function(){
+//         Route::get('getUser',['as'=>'getUser','uses'=>'EditUserController@getUser']);
+//         // ADD
+//         Route::get('addUser',['as'=>'addUser','uses'=>'EditUserController@addUser']);
+//         Route::post('xulyAddUser',['as'=>'xulyAddUser','uses'=>'EditUserController@xulyAddUser']);
+//         // DELETE
+//         Route::get('deleteUser/{id}',['as'=>'deleteUser','uses'=>'EditUserController@deleteUser']);
+//         Route::post('xulydeleteUser/{id}',['as'=>'xulydeleteUser','uses'=>'EditUserController@xulydeleteUser']);
 
-Route::get('/','MyController@indexUser')->name('home');
+//         // 
+//         Route::get('editUser',['as'=>'editUser','uses'=>'EditUserController@editUser']);
+//     });
+// });
+
+// EDIT THELOAI
+Route::get('TheLoai',['as'=>'theloai','uses'=>'EditTheLoaiController@getTheLoai']);
+
+// EDIT LOAITIN
+Route::get('LoaiTin',['as'=>'loaitin','uses'=>'EditLoaiTinController@getLoaiTin']);
+
+// EDIT TIN
+Route::get('Tin',['as'=>'tin','uses'=>'EditTinController@getTin']);
+
+// EDIT CHUYENMUC
+Route::get('ChuyenMuc',['as'=>'chuyenmuc','uses'=>'EditChuyenMucController@getChuyenMuc']);
 
 // AUTHEN CONTROLLER
-Route::get('Register','AuthController@Register')->name('Register');
-Route::get('xulyRegister','AuthController@xulyRegister')->name('xulyRegister');
-Route::get('Login','AuthController@Login')->name('Login');
-Route::post('xulyLogin','AuthController@xulyLogin')->name('xulyLogin');
+// REGISTER
+Route::get('Register',['as'=>'Register','uses'=>'RegisterController@Register']);
+Route::post('Register',['as'=>'xulyRegister','uses'=>'RegisterController@xulyRegister']);
+// LOGIN
+Route::get('Login',['as'=>'Login','uses'=>'LoginController@Login']);
+Route::post('Login',['as'=>'xulyLogin','uses'=>'LoginController@xulyLogin']);
+// LOGOUT
+Route::get('Logout',['as'=>'Logout','uses'=>'LogoutController@Logout']);
+// Account
+Route::get('Account',['as'=>'Account','uses'=>'AccountController@Account']);
+
+
+

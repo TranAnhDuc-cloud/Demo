@@ -21,6 +21,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <body>
 		<!--header-->
 		<div class="header-w3l">
+			@if ( Session::has('success') )
+					<h3>{{ Session::get('success') }}</h3>
+				@elseif ( Session::has('error') )
+					<h3>{{ Session::get('error') }}</h3>
+			@endif
 			<h1>Register</h1>
 		</div>
 		<!--//header-->
@@ -30,23 +35,35 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						<div class="wthree-form">
 							<h2>Register The WebSite</h2>
 							<form action="{{route('xulyRegister')}}" method="post">
+								@csrf
 								<div class="form-sub-w3">
 									<input type="text" name="username" placeholder="Username " required="" />
-								<div class="icon-w3">
-									<i class="fa fa-user" aria-hidden="true"></i>
-								</div>
+									<div class="icon-w3">
+										<i class="fa fa-user" aria-hidden="true"></i>
+									</div>
 								</div>
 								<div class="form-sub-w3">
-									<input type="password" name="Password" placeholder="Password" required="" />
-								<div class="icon-w3">
-									<i class="fa fa-unlock-alt" aria-hidden="true"></i>
+									<input type="password" name="password" placeholder="Password" required="" />
+									<div class="icon-w3">
+										<i class="fa fa-unlock-alt" aria-hidden="true"></i>
+									</div>
 								</div>
+								<div class="form-sub-w3">
+									<input type="password" name="passwordreset" placeholder="Enter The Password" required="" />
+									<div class="icon-w3">
+										<i class="fa fa-unlock-alt" aria-hidden="true"></i>
+									</div>
 								</div>
-								<label class="anim">
-								<input type="checkbox" class="checkbox">
-									<span>Remember Me</span> 
-									<a href="#">Forgot Password</a>
-								</label> 
+								<div class="form-sub-w3">
+									<input type="text" name="email" placeholder="Email " required="" />
+									<div class="icon-w3">
+										<i class="fa fa-envelope" aria-hidden="true"></i>
+									</div>
+								</div>
+								<div id="home-login ">
+									<a href="{{route('home')}}" ><button type="button" class="btn-home">Home</button></a> 
+									<a href="{{route('Login')}}"><button type="button" class="btn-login">Login</button></a>
+								</div>
 								<div class="clear"></div>
 								<div class="submit-agileits">
 									<input type="submit" value="Register">

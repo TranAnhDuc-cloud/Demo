@@ -2,7 +2,7 @@
 @section('title','Home')
 
 @section('content')
-<section class="section-space-less10" style=" margin-top: 60px; position: relative;">
+<section class="section-space-less10">
         <div class="container">
             <div class="row tab-space5">
                 <div class="col-lg-5 col-md-12 mb-10">

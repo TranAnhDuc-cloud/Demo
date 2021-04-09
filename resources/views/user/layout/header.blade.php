@@ -54,67 +54,29 @@
                                             <li class="active">
                                                 <a href="{{route('home')}}">Home</a>
                                             </li>
+                                            
+                                            @foreach ($theloai ?? '' as $item)
                                             <li>
-                                                <a href="#">Post</a>
+                                                <a href="">
+                                                    {{$item->TenTheLoai}}
+                                                </a>
                                                 <ul class="ne-dropdown-menu">
+                                                   
+                                                    @foreach ($loaitin as $row)
+                                                    @if ($row->idTL == $item->idTL)
                                                     <li>
-                                                        <a href="post-style-1.html">Post Style 1</a>
+                                                        <a href="">
+                                                            {!!$row->TenLoaiTin!!}
+                                                        </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="post-style-2.html">Post Style 2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="post-style-3.html">Post Style 3</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="post-style-4.html">Post Style 4</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-news-1.html">News Details 1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-news-2.html">News Details 2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-news-3.html">News Details 3</a>
-                                                    </li>
+                                                    @endif
+                                                    @endforeach
+                                                    
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <a href="#">Pages</a>
-                                                <ul class="ne-dropdown-menu">
-                                                    <li>
-                                                        <a href="author-post.html">Author Post Page</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="archive.html">Archive Page</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="gallery-style-1.html">Gallery Style 1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="gallery-style-2.html">Gallery Style 2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="404.html">404 Error Page</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="contact.html">Contact Page</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="post-style-1.html">Politics</a>
-                                            </li>
-                                            <li>
-                                                <a href="post-style-2.html">Business</a>
-                                            </li>
-                                            <li>
-                                                <a href="post-style-3.html">Sports</a>
-                                            </li>
-                                            <li>
-                                                <a href="post-style-4.html">Fashion</a>
-                                            </li>
+                                            @endforeach
+                                           
+                                           
                                         </ul>
                                     </nav>
                                 </div>
@@ -130,36 +92,36 @@
                                                 </button>
                                             </form>
                                         </li>
-                                        <li>
-                                            <button type="button" class="login-btn" data-toggle="modal" data-target="">
+                                        
+                                        <li class="login">
+                                            @yield('login-account')
+                                            {{-- <button type="button" class="login-btn" data-toggle="modal" data-target="">
                                                 <a href="{{route('Login')}}">
                                                 <i class="fa fa-user" aria-hidden="true"></i>Login
                                                 </a>
-                                            </button>
+                                            </button> --}}
                                             
                                         </li>
-                                        <li>
-
-                                            <button type="button" class="login-btn" data-toggle="modal" data-target="">
+                                        <li class="register">
+                                            @yield('register-logout')
+                                            {{-- <button type="button" class="login-btn" data-toggle="modal" data-target="">
                                                 <a href="{{route('Register')}}">
                                                     <i class="fa fa-user" aria-hidden="true"></i>Register
                                                 </a>
-                                            </button>
+                                            </button> --}}
                                             
                                         </li>
-                                        <li>
-                                            <div id="side-menu-trigger" class="offcanvas-menu-btn">
-                                                <a href="#" class="menu-bar">
-                                                    <span></span>
-                                                    <span></span>
-                                                    <span></span>
+                                        {{-- <li>
+
+                                            <button type="button" class="login-btn" data-toggle="modal" data-target="">
+                                                <a href="{{route('Logout')}}">
+                                                    <i class="fa fa-user" aria-hidden="true"></i>Logout
                                                 </a>
-                                                <a href="#" class="menu-times close">
-                                                    <span></span>
-                                                    <span></span>
-                                                </a>
-                                            </div>
-                                        </li>
+                                            </button>
+                                            
+                                        </li> --}}
+                                        
+                                       
                                     </ul>
                                 </div>
                             </div>

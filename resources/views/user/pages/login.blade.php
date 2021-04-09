@@ -11,9 +11,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Meta tag Keywords -->
 <!-- css files -->
 <link rel="stylesheet" href="css/font-awesome.min.css"> <!-- Font-Awesome-Icons-CSS -->
-<link rel="stylesheet" href="css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
-<link rel="stylesheet" href="css/all.min.css">
-<link rel="stylesheet" href="css/all.css">
 <link rel="stylesheet" href="css/stylelogin.css" type="text/css" media="all" /> <!-- Style-CSS --> 
 <!-- //css files -->
 <!-- web-fonts -->
@@ -22,9 +19,12 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //web-fonts -->
 </head>
 <body>
-	{!!$thongbao!!}
+	
 		<!--header-->
 		<div class="header-w3l">
+			@if ( Session::has('error') )
+				<h3>{{ Session::get('error') }}</h3>
+			@endif
 			<h1>Login</h1>
 		</div>
 		<!--//header-->
@@ -56,15 +56,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 								<div class="submit-agileits">
 									<input type="submit" value="Login">
 								</div>
-								<div class="home_res">
-									<a href="{{route('home')}}">
-										<i class="fas fa-arrow-alt-circle-left">
-										</i>Go Home
-									</a>
-									<a href="{{route('Register')}}">
-										<i class="fas fa-arrow-alt-circle-left">
-										</i>Register
-									</a>
+								<div id="home-login " style="margin-top: 10px">
+									<a href="{{route('home')}}" ><button type="button" class="btn-home">Home </button></a>
+									<a href="{{route('Register')}}"><button type="button" class="btn-login">Register</button></a>
 								</div>
 							</form>
 

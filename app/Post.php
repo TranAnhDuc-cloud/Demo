@@ -13,6 +13,6 @@ class Post extends Model
 
     public function Post(){
         // belongsTo() Liên Kiết con tới cha 1-1
-        return $this->belongsTo('App\LoaiSanPham','id_post','id');
+        return $this->belongsTo('App\TheLoai','id_post','id');
     }
 }

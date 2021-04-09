@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
+@section('title','The Loai')
+@section("content")
 
-@section("NoiDung")
-
-<h2>The Loai Trong Admin</h2>
+<h2>TheLoai</h2>
 
 @endsection

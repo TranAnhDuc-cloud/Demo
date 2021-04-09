@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Illuminate\Support\Facades\View;
 
 /*  @ Lấy dữ liệu từ route về controller bằng request
     @ Xuất dữ liệu từ controller ra view bằng response
@@ -72,11 +73,11 @@ class MyController extends Controller
        }else{
            if($request->input('password')==''){
             $thongbao ="Chưa Nhập Password";
-            return view('Home',compact('thongbao',$thongbao));
+            return view('user.pages.home',compact('thongbao',$thongbao));
            }else{
                if($username = true && $password =true){
                     echo "Đăng Nhập Thành Công";
-                    return view('Home');
+                    redirect()->route('home');
                }
                
            }
@@ -153,7 +154,18 @@ class MyController extends Controller
     }
     public function TheLoai(){
         $tllt = "<b>Theloai - loaitin</b>";
-        return view('admin.pages.loaitin',['tllt'=>$tllt]);
+        $data = DB::table('theloai')->select('TenTheLoai')
+        ->where('AnHien','1')
+        ->get();
+        // foreach($data as $row){
+        //     foreach($row as $key=>$value){
+        //         echo $key.' : '.$value;
+        //         echo "</br>";
+        //     }
+        //     echo "<hr>";
+        // }
+        return view('admin.pages.loaitin',['tllt'=>$data]);
+
     }
     public function LoaiTin(){
         $tllt = "<b>Theloai - loaitin</b>";
@@ -162,7 +174,7 @@ class MyController extends Controller
 
     // User
     public function indexUser(){
-        return view('Home');
+        return view('user.pages.home');
     }
     public function LienHe(){
         return view('user.pages.lienhe');    
